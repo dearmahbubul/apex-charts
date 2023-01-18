@@ -311,6 +311,7 @@ $(document).on('ready', function() {
             settings: {
                 slidesToShow: 4,
                 infinite: true,
+                arrows:false,
             }
         },
         {
@@ -318,6 +319,7 @@ $(document).on('ready', function() {
             settings: {
                 slidesToShow: 4,
                 infinite: true,
+                arrows:false,
             }
         },
         {
@@ -325,6 +327,7 @@ $(document).on('ready', function() {
             settings: {
                 slidesToShow: 2,
                 infinite: true,
+                arrows:false,
             }
         }]
 
