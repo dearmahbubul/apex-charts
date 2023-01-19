@@ -1,9 +1,13 @@
 var currentYear = '';
 
 
+
 //30 years
 var filter30yrs = [2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,
     2043,2045,2046,2050,2052,2055,2056,2060,2061,2065,2069]
+
+var currentStartYear = filter30yrs[0];
+var currentEndYear = filter30yrs[filter30yrs.length - 1];
 
 filter30yrs.forEach((item, index) => {
     $('.nav').append(`<div class="nav-item">
@@ -112,39 +116,45 @@ function setChart() {
     let yearData = [];
     let yearTotalData = [];
     let itemData = [];
-    if(currentYear) {
+
+    const isUniqueYear = currentStartYear === currentEndYear;
+
+    if(isUniqueYear) {
         years.map((item, index) => {
-            if(item === currentYear) {
-                yearData.push(currentYear);
+            if(item == currentStartYear) {
+                console.log('current start year');
+                yearData.push(item);
                 yearTotalData.push(total[index]);
                 itemData.push(items[index]);
             }
         })
     } else {
         for(var i= 0; i < years.length; i++) {
-            var newYearSum = total[i];
-            var newYear = years[i];
-            var isAlreadyCalculated = false;
-            for(var j=0; j < yearData.length; j++) {
-                if(newYear === yearData[j]) {
-                    isAlreadyCalculated = true;
-                    break;
-                }
-            }
-            if(!isAlreadyCalculated) {
-                for(var k= 0; k < years.length; k++) {
-                    if(i !== k && newYear === years[k]) {
-                        newYearSum += total[k];
+            if(years[i] >= currentStartYear && years[i] <= currentEndYear) {
+                var newYearSum = total[i];
+                var newYear = years[i];
+                var isAlreadyCalculated = false;
+                for (var j = 0; j < yearData.length; j++) {
+                    if (newYear === yearData[j]) {
+                        isAlreadyCalculated = true;
+                        break;
                     }
                 }
-                yearData.push(newYear);
-                yearTotalData.push(newYearSum);
+                if (!isAlreadyCalculated) {
+                    for (var k = 0; k < years.length; k++) {
+                        if (i !== k && newYear === years[k]) {
+                            newYearSum += total[k];
+                        }
+                    }
+                    yearData.push(newYear);
+                    yearTotalData.push(newYearSum);
+                }
             }
         }
     }
 
-
-    $('.year').html(currentYear);
+    const yearTitle = isUniqueYear ? currentStartYear : currentStartYear + " - " + currentEndYear;
+    $('.year').html(yearTitle);
     var options = {
         // expandOnClick: false,
         /*plotOptions: {
@@ -263,7 +273,7 @@ function formatCustomNumber(n){
 }
 setChart();
 $(document).on('ready', function() {
-    $(".center").slick({
+    /*$(".center").slick({
         dots: false,
         infinite: true,
         centerMode: true,
@@ -340,7 +350,28 @@ $(document).on('ready', function() {
         $('#all-year').addClass('btn-outline-primary');
         $(`.nav-link_${currentYear}`).addClass('active');
         setChart();
-    });
+    });*/
 
 });
 
+    (function () {
+    'use strict';
+
+    var init = function () {
+        var slider = new rSlider({
+            target: '#slider',
+            values: filter30yrs,
+            range: true,
+            set: [currentStartYear, currentEndYear],
+            onChange: function (vals) {
+                // console.log(vals);
+                const range = vals.split(",");
+                currentStartYear = range[0]
+                currentEndYear = range[1];
+                currentYear = currentStartYear === currentEndYear ? currentStartYear : '';
+                setChart();
+            }
+        });
+    };
+    window.onload = init;
+})();

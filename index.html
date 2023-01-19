@@ -8,8 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <link rel="stylesheet" type="text/css" href="assets/slick/slick.css?v2022">
-    <link rel="stylesheet" type="text/css" href="assets/slick/slick-theme.css?v2022">
+    <link rel="stylesheet" type="text/css" href="assets/slider/rSlider.min.css">
     <link rel="stylesheet" type="text/css" href="assets/style.css">
 
     <title>Apex chart visualization</title>
@@ -17,25 +16,20 @@
 <body>
 <div class="container-fluid mt-3">
     <div class="shadow pt-2 pb-2">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <div class="row">
+                    <div class="col-md-12 mx-auto">
+                        <div class="slider-container p-5">
+                            <input type="text" id="slider" class="slider" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="border-end border-2">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" id="all-year">All Year</button>
-                            <div class="row">
-                                <div class="col-md-10 m-auto">
-                                    <ul class="nav justify-content-center center slider">
-                                        <!--<li class="nav-item">
-                                            <button class="btn btn-primary" id="all-year">All</button>
-                                        </li>-->
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <h3 class="year">2014</h3>
@@ -53,9 +47,8 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/jquery-migrate-3.4.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="assets/slick/slick.js?v2022" type="text/javascript" charset="utf-8"></script>
+<script src="assets/slider/rSlider.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="assets/script.js"></script>
 
 </body>
